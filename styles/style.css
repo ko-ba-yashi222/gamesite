@@ -1,0 +1,851 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+
+
+body {
+    font-family: "Cinzel", serif;
+    width: 100%;
+    background-color: black;
+    min-height: auto;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: ghostwhite;
+}
+
+h1 {
+    font-size: 44px;
+    color: ghostwhite;
+    position: absolute;
+    top: 10%;
+    left: 0%;
+}
+
+.video{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: contain; /* アスペクト比を維持しつつ、画面全体にフィット */
+    z-index: -1;
+    opacity: 0.9;
+    overflow: hidden;
+ 
+}
+
+.video video{
+  position: fixed;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  opacity: 0.8;
+  width: 100%;
+  height: 100vh;
+}
+
+
+
+
+.navContainer{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+}
+
+
+nav {
+  position: fixed;
+  z-index: 999;
+    display: flex;
+    width: 800px;
+    color: aliceblue;
+    
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height:60px;
+    background-color: rgb(17, 7, 8);
+    opacity: 0.7;
+   
+
+}
+
+h2,nav ul li a {
+    font-size: 24px;
+    transition: all 0.1s ease;
+}
+
+h2,nav ul li a:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* ボタンの周りに光の影 */
+    background-color: #444; /* 背景色が少し暗くなる */
+    transform: scale(1.05); /* 少し拡大して立体感を出す */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); /* 文字が光るエフェクト */
+}
+
+/* ドロップダウンメニュー */
+.dropdown {
+    position: relative; /* ドロップダウンメニューを親要素の下に表示させるため */
+  }
+  
+  /* ドロップダウンメニューの内容（初期状態では非表示） */
+  .dropdown-content {
+    display: none; /* デフォルトでは非表示 */
+    position: absolute;
+    top: 100%; /* 親要素の直下に表示 */
+    left:-30%;
+    background-color: black;
+    min-width: 200px;
+    white-space: nowrap;
+    z-index: 1; /* 他の要素より上に表示 */
+  }
+  
+  /* ドロップダウンメニュー項目 */
+  .dropdown-content a {
+    padding: 10px;
+    font-size: 16px;
+    color:ghostwhite;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* ドロップダウンメニュー項目ホバー時 */
+  .dropdown-content a:hover {
+    background-color: #555;
+  }
+  
+  /* ドロップダウンメニューが表示されるようにする */
+  .dropdown:hover .dropdown-content {
+    display: block; /* 親要素にホバーしたときに表示 */
+  }
+
+main {
+    height: 100vh;
+    
+}
+
+
+
+main h2{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 48px;
+    color: ghostwhite;
+    display: block;
+    text-align: center;
+    font-size: 44px;
+    background-color: black;
+    opacity: 0.8;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+    display: block;
+    text-align: center;
+    font-size: 44px;
+    background-color: black;
+    opacity: 0.7;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: azure;
+    margin: 0;
+}
+
+
+
+
+
+
+.world {
+    background-color: black;
+    opacity: 0.8;
+    
+    }
+
+    .worldexp{
+      display: flex;
+      justify-content: center;
+      color: ghostwhite;
+      padding-top: 20px;
+      font-size: 18px;
+      letter-spacing: 0.1px;
+      line-height: 2em;
+      
+    }
+
+
+    /* スライドコンテナ */
+    .slideContainer {
+        position: relative;
+        width: 800px;
+        height: 500px;
+        margin: 0 auto;
+        z-index: 999;
+        border: 2px solid darkslategray;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        
+        
+    }
+    
+    
+
+    .world img {
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;    
+    }
+    
+/* 画像の初期状態 */
+.world img {
+  display: none; /* 最初はすべて非表示 */
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* フェードイン・フェードアウトのトランジション */
+}
+
+/* 画像が表示されたときのスタイル */
+.world img.show {
+  display: block; /* 表示する */
+  opacity: 1; /* フェードイン効果 */
+}
+
+/* キャプションや説明文にもフェードイン効果を追加（任意） */
+.caption, #description {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.caption.show, #description.show {
+  opacity: 1;
+}
+      
+
+    .caption {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: black;
+        font-size: 32px;    
+    }
+    
+    #description{
+      
+        display: block;
+        font-size: 20px;
+        margin: 0 auto;
+        color: ghostwhite;
+        padding: 15px;
+        line-height: 1.6em;
+        letter-spacing: 0.1em;
+        width: 50vw;
+        z-index: 50;
+    }
+    /* .bClass{
+      height: 100vh;
+    } */
+
+    .war{
+      color: #c67272;
+      border-bottom: 1px solid;
+    }
+
+    .magic{
+      color:#e7a7f6;
+      border-bottom: 1px solid;
+    }
+
+    .assa{
+      color: #9930ff;
+      border-bottom: 1px solid;
+    }
+
+    .pri{
+      color: #5bec68;
+      border-bottom: 1px solid;
+    }
+
+
+
+
+    
+    .scroll_up {
+        transition: 0.8s ease-in-out;
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      .scroll_up.on {
+        transform: translateY(0);
+        opacity: 1.0;
+        
+      }
+
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        position: absolute; /* 絶対位置で配置 */
+        top: 50%; /* 中央に配置 */
+        transform: translateY(-50%); /* 中央に正確に配置 */
+      }
+    
+      .carousel-control-prev {
+        left: 0;
+      }
+    
+      .carousel-control-next {
+        right: 0;
+      }
+
+        /* ボタン内のタイトルのスタイル */
+  .class-button {
+    background-color: #007bff;  /* ボタンの背景色 */
+    border: none;               /* ボーダーなし */
+    color: white;               /* 文字色 */
+    font-size: 1.5rem;          /* 文字サイズ */
+    padding: 10px 20px;         /* パディング */
+    border-radius: 5px;         /* ボタンの角を丸く */
+    text-align: center;         /* 中央揃え */
+    cursor: pointer;           /* カーソルをポインターに変更 */
+    display: flex;              /* フレックスボックスでアイテムを整列 */
+    align-items: center;        /* アイテムを中央揃え */
+  }
+
+  /* ボタンにホバー時のスタイル */
+  .class-button:hover {
+    background-color: #0056b3;  /* ホバー時の背景色 */
+  }
+
+  /* ボタン内の<h3>のマージン調整 */
+  .class-button h3 {
+    margin: 0; /* h3 の上下マージンをゼロに */
+  }
+
+  /* ボタン内のタイトルのスタイル */
+  .class-button {
+    background-color: #007bff;  /* ボタンの背景色 */
+    border: none;               /* ボーダーなし */
+    color: white;               /* 文字色 */
+    font-size: 1.5rem;          /* 文字サイズ */
+    padding: 10px 20px;         /* パディング */
+    border-radius: 5px;         /* ボタンの角を丸く */
+    text-align: center;         /* 中央揃え */
+    cursor: pointer;           /* カーソルをポインターに変更 */
+    display: flex;              /* フレックスボックスでアイテムを整列 */
+    align-items: center;        /* アイテムを中央揃え */
+  }
+
+  /* ボタンにホバー時のスタイル */
+  .class-button:hover {
+    background-color: #0056b3;  /* ホバー時の背景色 */
+  }
+
+  /* ボタン内の<h3>のマージン調整 */
+  .class-button h3 {
+    margin: 0; /* h3 の上下マージンをゼロに */
+  }
+
+  /* カルーセルの前後ボタン（矢印）のスタイル */
+  .carousel-control-prev,
+  .carousel-control-next {
+    position: absolute;
+    top: 77%;               /* ボタンを上下中央に配置 */
+    transform: translateY(-50%); /* 完全に中央にする */
+    font-size: 2rem;        /* 矢印のサイズ */
+    background: transparent; /* 背景を透明に */
+    border: none;           /* ボーダーなし */
+    color: #007bff;         /* 矢印の色 */
+    cursor: pointer;       /* カーソルをポインターに変更 */
+  }
+
+  /* 左ボタンの位置 */
+  .carousel-control-prev {
+    left: 40%;  /* 左側に配置 */
+  }
+
+
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    color: #0056b3;  /* ホバー時に色を変更 */
+  }
+
+/*ボタン*/
+button {
+    position: absolute;
+    bottom: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background: black;
+    opacity: 0.8;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  /*ボタンにマウスオンでオレンジ色にする*/
+  .world button:hover {
+    background: #f99f3e;
+  }
+  
+  /*前へ戻るボタンの位置は左端*/
+  .previous-btn {
+    left: 10px;
+  }
+  
+  /*次へ進むボタンの位置は右端*/
+  .next-btn {
+    right: 10px;
+  }
+
+
+.kakuu{
+  margin: 0;
+  text-align: end;
+  padding-bottom: 20px;
+  color: ghostwhite;
+  font-size: 16px;
+  
+}
+
+
+
+
+      /* ニュースセクション */
+      .news-section {
+        width: 100%;
+        margin: 0 auto;
+        padding: 40px 0;
+      }
+  
+      .news-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #333;
+      }
+  
+      .news-articles {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        background-color: black;
+        opacity: 0.8;
+        
+      }
+  
+      .news-article {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+  
+      .news-article:hover {
+        transform: scale(1.05);
+      }
+  
+      .news-article img {
+        width: 100%;
+        height: auto;
+      }
+  
+      .news-article-content {
+        padding: 15px;
+      }
+  
+      .news-article-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #333;
+      }
+  
+      .news-article-date {
+        font-size: 0.9em;
+        color: #777;
+        margin-bottom: 15px;
+      }
+  
+      .news-article-summary {
+        font-size: 1em;
+        color: #555;
+        margin-bottom: 15px;
+      }
+  
+      .read-more {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+  
+      .read-more:hover {
+        background-color: #0056b3;
+      }
+
+      .support{
+       background-color: black;
+        width: 100%;
+        height: 100%;
+      
+      }
+
+      .pcdousa {
+        height: 100%;
+      }
+
+
+
+      .world,.faq{
+        position: relative;
+      }
+      
+      .faq h2 {
+        position: relative;
+        margin: 0;
+        font-size: 32px;
+      }
+
+
+
+      .world h3{
+        display: block;
+        text-align: center;
+        position: absolute;
+        font-size: 16px;
+        left: 0;
+        top: 8%;
+        width: 100%;
+        color: azure;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+      }
+
+      .system {
+        background-color: black;
+        opacity: 0.8;
+        height: auto;
+      }
+
+    .sTree{
+      height: auto;
+      padding-bottom: 20px;
+
+    }
+    .sTree img {
+      display: block;
+      margin: 0 auto;
+      width: 80vw;           /* 画面幅の80% */
+      height: 400px;         /* 高さを500pxに固定 */
+      object-fit: contain;     /* 画像が指定領域をカバーするように調整 */
+      margin-bottom: 20px;
+      margin-top: 20px;
+      transition: transform 0.3s ease;
+
+      
+    }
+
+    .sTree img:hover{
+      transform: scale(1.1); /* ホバー時に10%拡大 */
+    }
+
+    .sTree p {
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .sTree strong {
+     color: #cdc15d;
+    }
+
+      .carousel-item img {
+          
+          padding-top: 20px;
+          height: 400px;
+          object-fit: contain;
+          padding-bottom:20px;
+          border-radius: 10px;
+          transition: opacity 1s ease-in-out; 
+
+
+      }
+
+
+      
+
+      .system h3 {
+        font-size: 24px;
+        color: ghostwhite;
+        border-bottom: 1px solid ghostwhite;
+        position: relative;
+      }
+
+      .system p {
+        display: block;
+        max-width: 45vw;
+        width: 100%;
+        color: ghostwhite;
+        line-height: 1.6em;
+        
+      }
+
+      .classexp{
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      margin-bottom: 50px;
+      
+      }
+
+      .classexp p {
+        text-align: left;
+        line-height: 2em;
+        letter-spacing: 0.1em;
+        max-width: 70vw;
+        
+
+      }
+
+      .ms-3{
+        transition: opacity 2s ease-in-out; 
+      }
+
+       .faq h3 {
+        display: block;
+        text-align: center;
+        position: absolute;
+        font-size: 16px;
+        left: 0;
+        top: 18%;
+        width: 100%;
+        color: azure;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+      }
+
+
+
+
+      .qa{
+        margin-top: 30px;
+        font-size: 18px;
+        color: ghostwhite;
+      }
+
+
+      .hiddenAns{
+        opacity: 0;
+      }
+
+      .hiddenAns.show{
+        opacity: 1;
+        transition: 0.5s ease-in-out, height 0.5s ease-in-out; 
+      }
+
+      hr{
+        color:ghostwhite;
+  
+      }
+
+      #dousa {
+        font-size: 32px;
+      }
+
+      .pcdousa ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100%;
+        background-color: #f9f9f9;
+        margin: 0;
+       
+      }
+
+      .pcdousa ul li span {
+        font-weight: bold;
+      }
+
+      .grid-item h3 {
+        border-bottom: 3px solid #cdbfbf; 
+    }
+      .pcdousa ul li {
+        font-size: 16px;
+        letter-spacing:1px;
+        line-height: 2em;
+      }
+
+      .grid-container {
+        display: grid;
+        
+        grid-template-columns: repeat(2, 1fr); /* 2列に配置 */
+        gap: 20px;
+        padding: 10px;
+        margin: 0 auto;
+        
+
+    }
+
+.bClass h2 {
+  font-size: 24px;
+  box-shadow: none;
+}
+
+.grid-item h2 {
+  font-size: 24px;
+}
+
+
+
+.answer p {
+  transition: 0.8s ease-in-out;
+  transform: translateY(30px);
+}
+
+
+.qa{
+  margin-left: 40px;
+}
+
+
+
+/* フッター*/
+footer {
+  align-items: center;
+  background-color: black;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  
+  margin-top: 80px;
+  position: relative;
+}
+
+footer p {
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+
+.carousel-item .d-flex {
+  position: relative; /* ボタンを絶対位置で配置できるようにする */
+}
+
+.carousel-control-prev, .carousel-control-next {
+  position: absolute; /* ボタンを絶対位置で配置 */
+  top: 35%; /* 縦方向に中央 */
+  transform: translateY(-50%); /* 完全に中央揃え */
+}
+
+.carousel-control-prev {
+  left: 40%; /* 左側に配置（調整可） */
+  top: 34%;
+}
+
+.carousel-control-next {
+  right: 10%; /* 右側に配置（調整可） */
+ top: 33%;
+}
+
+
+
+
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(20, 13, 32, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+
+#loading-screen p {
+font-size: 36px;
+color: ghostwhite;
+}
+
+
+/* #loading-screen img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+} */
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+@media screen and (max-width: 768px){
+
+  nav ul li a{
+    font-size: 16px;
+  }
+
+  h1{
+    font-size: 36px;
+  }
+
+  main h2 {
+    font-size: 36px;
+    left: 0%;
+  }
+
+.slideContainer{
+  width: 100%;
+  height: 300px;
+}
+
+.caption {
+  font-size: 28px;
+}
+
+#description {
+  width:100%;
+  font-size: 18px;
+
+}
+}

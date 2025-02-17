@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script src="common/jquery-3.7.1.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="common/reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Game</title>
+</head>
+<body>
+    <!-- ローディング画面 -->
+    <div id="loading-screen">
+      <p>Now Loading...</p>
+      <div class="spinner"></div>
+  </div>
+
+
+        <nav class="navContainer">
+            <ul>
+                <li><a href="#">TOP
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466"/>
+                      </svg>
+                </a></li>
+                <div class="dropdown">
+                <li><a href="#world">WORLD
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-compass" viewBox="0 0 16 16">
+                        <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
+                        <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
+                      </svg>
+                </a>
+                    <div class="dropdown-content">
+                        <a href="#frost" class="maps">Frostpeak Summit</a>
+                        <a href="#broken" class="maps">Broken Crown Citadel</a>
+                        <a href="#ember" class="maps">The Ember Pit</a>
+                        <a href="#eden" class="maps">Floating Eden</a>
+                    </div>
+                    </div>
+                    </li>
+
+                    <div class="dropdown">
+                <li><a href="#system">SYSTEM
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gem" viewBox="0 0 16 16">
+                        <path d="M3.1.7a.5.5 0 0 1 .4-.2h9a.5.5 0 0 1 .4.2l2.976 3.974c.149.185.156.45.01.644L8.4 15.3a.5.5 0 0 1-.8 0L.1 5.3a.5.5 0 0 1 0-.6zm11.386 3.785-1.806-2.41-.776 2.413zm-3.633.004.961-2.989H4.186l.963 2.995zM5.47 5.495 8 13.366l2.532-7.876zm-1.371-.999-.78-2.422-1.818 2.425zM1.499 5.5l5.113 6.817-2.192-6.82zm7.889 6.817 5.123-6.83-2.928.002z"/>
+                      </svg>
+                </a>
+                <div class="dropdown-content">
+                  <a href="#bClass" class="">Basic Class</a>
+                  <a href="#sTree" class="">Skill Tree</a>
+                  </div>
+                </div>
+
+
+              </li>
+                <li><a href="#news">NEWS
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
+                    <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5z"/>
+                    <path d="M2 3h10v2H2zm0 3h4v3H2zm0 4h4v1H2zm0 2h4v1H2zm5-6h2v1H7zm3 0h2v1h-2zM7 8h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2zm-3 2h2v1H7zm3 0h2v1h-2z"/>
+                  </svg></a></li>
+
+                  <div class="dropdown">
+                <li><a href="#support">SUPPORT
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                      </svg>
+                </a>
+                <div class="dropdown-content">
+                    <a href="#faq" class="">FAQ</a>
+                    <a href="#dousa" class="">必要・推奨動作環境</a>
+                    <a href="#" class="">Contact</a>
+                </div>
+                </div>
+            </li>
+            </ul>
+        </nav>
+    </div>
+
+    <section class="showcase">
+        <header>
+            <h1>Online Game Site</h1>
+            <div class="toggle"></div>
+        </header>
+
+
+        <div class="video">
+            <video autoplay muted loop>
+                <source src="./videos/dragon2.mp4" type="video/mp4">
+            </video>    
+        </div>
+
+        <main>
+            <h2>Launching Soon!</h2>
+        </main>
+    </section>
+
+
+     <section id="world" class="world">
+            <h2>WORLD</h2>
+            <h3>ゲーム内の世界</h3>
+
+            <div class="worldexp">
+            <p>本作の世界は、無限に広がる大陸、神秘的なダンジョン、そして深遠な海底まで、プレイヤーを待ち受ける冒険と危険に満ちています。<br>
+              探索を通じて様々なエリアを発見し、壮大な物語を紡いでいきましょう。<br>
+              今回は、世界の一部をご紹介いたします。
+            </p>
+            </div>
+
+            <div class="scroll_up">
+            <div class="slideContainer">
+                <img src="./images/world1.jpg" id="frost"   alt="Frostpeak Summit">
+                <img src="./images/world2.jpg" id="broken"  alt="Broken Crown Citadel">
+                <img src="./images/world3.jpg" id="ember"  alt="The Ember Pit">
+                <img src="./images/world4.jpg" id="eden"  alt="Floating Eden">
+        
+                <div class="caption"></div>
+        
+        
+                <!--前に戻るボタン-->
+                <button class="previous-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+                  </svg>
+                </button>
+                
+                <!--次へ進むボタン-->
+                <button class="next-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                  </svg>
+                </button>
+        
+            </div>
+        
+            <p id="description">極寒の地、雪と氷に覆われた不毛の大地。視界が悪く、常に雪崩や敵の襲撃に警戒しなければならない。</p>
+
+
+            <p class="kakuu">※上記は全て開発中(架空)のものとなります。</p>
+
+            </div>
+    </section>
+
+
+
+            
+
+    <section id="system" class="system">
+      <h2>SYSTEM</h2>
+    
+      <div class="scroll_up">
+        <div id="bClass" class="bClass">
+          <h2>Basic Class</h2>
+          <div class="classexp">
+            <p>本作ではクラスシステムを採用しており、プレイヤーがキャラクターの役割や戦闘スタイルを選ぶことができます。<br>
+              各クラスは異なる能力、スキル、戦術を持ち、プレイスタイルに合わせて成長します。<br>
+              <span class="war">戦士として戦場で仲間を支える盾</span>となるか、<span class="magic">魔法使いとして強力な呪文で敵を一掃</span>するか、
+              <span class="assa">暗殺者となり影から戦況を操る</span>もよし、<span class="pri">僧侶となり神聖な力で味方を支援</span>するか選択はプレイヤー次第。<br>
+              ゲーム開始時には複数の基本クラスから選び、進行に伴い上級クラスへと進化することができます。
+              また、クラスにはスキルツリーやカスタマイズ要素があり、自分のスタイルに合わせて成長を楽しむことができます。
+            </p>
+          </div>
+        </div>
+    
+        <hr>
+
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="d-flex align-items-center">
+                <img src="./images/warrior.png" class="d-block w-50" alt="Warrior">
+                <div class="ms-3">
+                  <h3>Warrior</h3>
+                  <p>ウォリアーは近距離戦闘に優れたクラスで、堅固な防御力と高い攻撃力を誇ります。鋭い剣や盾を駆使し、敵の前線で仲間を守りながら戦うことができます。特に耐久力が高く、ダメージを受けても立ち続けることができるため、パーティの盾となる役割を担います。</p>
+                </div>
+              </div>
+            </div>
+    
+            <div class="carousel-item">
+              <div class="d-flex align-items-center">
+                <img src="./images/mage.png" class="d-block w-50" alt="Mage">
+                <div class="ms-3">
+                  <h3>Sorcerer</h3>
+                  <p>ソーサラーは遠距離から強力な魔法で敵を攻撃するクラスです。<br>火、氷、雷などの元素魔法を駆使し、戦場に大きな影響を与えることができます。高い攻撃力を誇る反面、耐久力は低いため、安全な位置を確保することが重要となります。</p>
+                </div>
+              </div>
+            </div>
+    
+            <div class="carousel-item">
+              <div class="d-flex align-items-center">
+                <img src="./images/assasin.png" class="d-block w-50" alt="Assassin">
+                <div class="ms-3">
+                  <h3>Assassin</h3>
+                  <p>アサシンは中距離・近距離に対応できるクラスです。<br>影のように忍び寄り、瞬時にターゲットを仕留めます。高い敏捷性と隠密行動を活かし、敵に気づかれずに致命的な一撃を加えることができます。</p>
+                </div>
+              </div>
+            </div>
+    
+            <div class="carousel-item">
+              <div class="d-flex align-items-center">
+                <img src="./images/priest.png" class="d-block w-50" alt="Priest">
+                <div class="ms-3">
+                  <h3>Priest</h3>
+                  <p>プリーストは神聖な力を使って仲間を癒し、サポートするクラスです。<br>癒しの魔法や祝福、守護の呪文を使い、戦闘中の仲間を支援します。攻撃力は低いものの、その癒しの力は絶大で、パーティの生命線ともいえる存在です。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+
+    
+        <div id="sTree" class="sTree">
+          <h2>Skill Tree</h2>
+
+       
+          <img src="./images/skilltree.png" alt="Skill Tree">
+          <p><strong>多様なビルドの可能性</strong><br>
+            スキルツリーを活用することで、攻撃的なビルド、支援型のビルド、あるいは防御に特化したビルドなど、プレイヤーごとのプレイスタイルに合わせたキャラクターを作成可能です。複数のスキルパスが存在するため、他のプレイヤーと差別化された独自のキャラクターを作り上げることができます。</p>
+            <hr>
+            <p><strong>スキルツリーの進化</strong><br>
+            さらに、スキルツリーは単なる成長の道筋にとどまらず、進化の選択肢も用意されています。一定の条件を満たすことで、上級スキルを習得できる「進化ルート」に進むことができ、プレイヤーの選択がキャラクターの成長に大きな影響を与えます。</p>
+            <hr>
+            <p><strong>プレイスタイルに合わせた最適化</strong><br>
+            プレイヤーはスキルツリーを使って、PvE（プレイヤー対環境）やPvP（プレイヤー対プレイヤー）において、自分の目的に最適なビルドを作り上げることができます。スキルを組み合わせることで、ダンジョン攻略や対人戦において強力なパフォーマンスを発揮することが可能です。</p>
+            <hr>
+            <p><strong>スキルツリーを制覇し、自分だけの戦術で世界を制覇しましょう！</strong></p>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="news" class="news">
+        <h2>NEWS</h2>
+
+        <div class="scroll_up">
+        <div class="news-articles">
+            <!-- ニュース記事1 -->
+            <div class="news-article">
+              <img src="#" alt="ニュース画像1">
+              <div class="news-article-content">
+                <h3 class="news-article-title">ニュース記事タイトル1</h3>
+                <p class="news-article-date">2099年1月15日</p>
+                <p class="news-article-summary">これはニュース記事1の概要です。記事の内容がここに簡単に説明されます。</p>
+                <a href="#" class="read-more">続きを読む</a>
+              </div>
+            </div>
+      
+            <!-- ニュース記事2 -->
+            <div class="news-article">
+              <img src="#" alt="ニュース画像2">
+              <div class="news-article-content">
+                <h3 class="news-article-title">リリース日が決定致しました。</h3>
+                <p class="news-article-date">2211年1月19日</p>
+                <p class="news-article-summary">リリース日が決定</p>
+                <a href="#" class="read-more">続きを読む</a>
+              </div>
+            </div>
+      
+            <!-- ニュース記事3 -->
+            <div class="news-article">
+              <img src="#" alt="ニュース画像3">
+              <div class="news-article-content">
+                <h3 class="news-article-title">サービスがまもなく開始されます。</h3>
+                <p class="news-article-date">2265年2月20日</p>
+                <p class="news-article-summary">サービス開始のお知らせ</p>
+                <a href="#" class="read-more">続きを読む</a>
+              </div>
+            </div>
+      
+            
+
+            <!-- ニュース記事4 -->
+            <div class="news-article">
+                <img src="#" alt="ニュース画像4">
+                <div class="news-article-content">
+                  <h3 class="news-article-title">重要なお知らせ</h3>
+                  <p class="news-article-date">2295年6月13日</p>
+                  <p class="news-article-summary">サービス終了のお知らせ</p>
+                  <a href="#" class="read-more">続きを読む</a>
+                </div>
+              </div>
+<!-- 追加のニュース記事をここに追加 -->
+          </div>
+         </div>
+        </section>
+   
+
+     <section id="support" class="support">
+        <h2>SUPPORT</h2>
+        <div class="scroll_up">
+            <div id="faq" class="faq">
+                    <h2>FAQ</h2>
+                    <h3>よくあるご質問</h3>
+
+                    <div class="qa">
+                         <p class="question"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                          </svg>ゲームプレイは無料ですか? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1z"/>
+                            <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708z"/>
+                          </svg></p>   
+
+                          <div class="hiddenAns">
+                          <p class="answer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                          </svg>基本料金は無料ですが、別途有料アイテム等がございます。</p>
+                     </div>
+                     </div>
+
+                     
+                     <div class="qa">
+                          <p class="question"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                          </svg>ゲームの始め方を教えてください。</p>   
+
+                          <div class="hiddenAns">
+                          <p class="answer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                          </svg>下記より必要・推奨動作環境をご確認の上、ダウンロードページよりゲームクライアントのダウンロードを行ってください。</p>
+                        </div>
+                     </div>
+
+
+                        <div class="qa">
+                            <p class="question"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                            </svg>不具合を報告したいのですが、どうすればいいですか?</p>   
+  
+
+                            <div class="hiddenAns">
+                            <p class="answer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text" viewBox="0 0 16 16">
+                              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                              <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6m0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                            </svg>不具合の報告は、サポートページの「CONTACT」から行えます。問題の詳細を記入して送信してください。</p>
+                          </div>
+                        </div>
+                    
+
+            </div>
+            
+
+            <div class="main-content">
+                <h2 id="dousa">必要・推奨動作環境</h2>
+                <div class="pcdousa">
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <h2>必要動作環境</h2>
+                            <ul>
+                                <li>OS（オペレーティングシステム:<span><br>Windows 7 以上 または macOS 10.13（High Sierra）以上</span></li>
+                                <li>プロセッサ(CPU):<span><br>Core i3-6100 または AMD FX-4100 以上</span></li>
+                                <li>グラフィックカード(GPU):<span><br>NVIDIA GeForce GTX 750 Ti 以上 または AMD Radeon R7 360 以上</span></li>
+                                <li>メモリ(RAM)<span><br>8GB 以上</span></li>
+                                <li>ストレージ<span><br>HDD 512gb 以上</span></li>
+                                <li>ネットワーク接続<span><br>標準的なインターネット接続（ダウンロード 5Mbps 以上、アップロード 1Mbps 以上）</span></li>
+                                <li>DirectX / Vulkan<span><br>DirectX 11 以上</span></li>
+                                <li>その他の要件<span><br>サウンドカード、解像度 1280x720 以上、マウス・キーボード</span></li>
+                            </ul>
+                        </div>
+            
+                        <div class="grid-item">
+                            <h2>推奨動作環境</h2>
+                            <ul>
+                                <li>OS（オペレーティングシステム:<span><br>Windows 10 / 11（64ビット）または macOS 10.15（Catalina）以上</span></li>
+                                <li>プロセッサ(CPU):<span><br>Intel Core i5-9400F 以上 または AMD Ryzen 5 2600 以上</span></li>
+                                <li>グラフィックカード(GPU):<span><br>NVIDIA GeForce GTX 1660 以上 または AMD Radeon RX 580 以上</span></li>
+                                <li>メモリ(RAM)<span><br>16GB 以上</span></li>
+                                <li>ストレージ<span><br>SSD 512GB 以上（ゲームのロード時間を短縮するため、SSDが推奨されます）</span></li>
+                                <li>ネットワーク接続<span><br>高速インターネット接続（ダウンロード 10Mbps 以上、アップロード 3Mbps 以上）</span></li>
+                                <li>DirectX / Vulkan<span><br>DirectX 11 以上</span></li>
+                                <li>その他の要件<span><br>サウンドカード、解像度 1920x1080（フルHD）以上、マウス・キーボード</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer>
+                <p>© 2025 Online Game site. All rights reserved.</p>
+                <p>このページは視覚的なレイアウトやインタラクションを確認するためのサンプルです。テキスト及びコンテンツは全て架空のもので、実際の製品やサービスには関係ありません。</p>
+                <p>このページのWORLDイメージ画像は'ゲームまてりあるず'様の素材を利用させていただいております。</p>
+            </footer>
+
+
+
+            
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="scripts/script.js"></script>
+
+</body>
+</html>
